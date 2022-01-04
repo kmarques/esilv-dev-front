@@ -86,6 +86,7 @@ function generateStructure(struct) {
       element.appendChild(generateStructure(child));
     }
   });
+  struct.node = element;
   return element;
 }
 
