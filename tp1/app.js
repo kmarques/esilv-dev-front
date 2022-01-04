@@ -5,29 +5,45 @@
  *
  * Fonctions interdites: innerHTML, innerText, document.write, onclick, onblur
  */
-const table = document.createElement("table");
 const root = document.getElementById("root");
+const table = Table();
+root.appendChild(table);
 
-// Création des lignes
-for (let i = 0; i < 5; i++) {
-  const tr = document.createElement("tr");
-  table.appendChild(tr);
-  // const tr = table.inserRows();
-  // Création des colonnes
-  for (let j = 0; j < 5; j++) {
-    const td = document.createElement("td");
-    tr.appendChild(td);
-    // const td = tr.insertCell();
-    // Création du contenu
-    const text = document.createTextNode("Case " + i + " " + j);
-    td.appendChild(text);
-    //td.textContent = "Case " + i + " " + j;
-    // Gestion de l'événement
-    td.addEventListener("click", handleTdClick);
+const table1 = Table(10, 10);
+root.appendChild(table1);
+
+function Table(nbLines = 5, nbColumns = 5) {
+  const table = document.createElement("table");
+  // Création des lignes
+  for (let i = 0; i < nbLines; i++) {
+    const tr = Row(i, nbColumns);
+    table.appendChild(tr);
   }
+  return table;
 }
 
-root.appendChild(table);
+function Row(lineNumber, nbColumns = 5) {
+  const tr = document.createElement("tr");
+  // const tr = table.inserRows();
+  // Création des colonnes
+  for (let j = 0; j < nbColumns; j++) {
+    const td = Column("Case " + lineNumber + " " + j);
+    tr.appendChild(td);
+  }
+  return tr;
+}
+
+function Column(textContent) {
+  const td = document.createElement("td");
+  // const td = tr.insertCell();
+  // Création du contenu
+  const text = document.createTextNode(textContent);
+  td.appendChild(text);
+  //td.textContent = "Case " + i + " " + j;
+  // Gestion de l'événement
+  td.addEventListener("click", handleTdClick);
+  return td;
+}
 
 function handleTdClick(event) {
   const td = event.currentTarget;
