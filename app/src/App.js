@@ -2,8 +2,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import Button from "./components/lib/Button";
 import Table from "./components/lib/Table";
+import Collapse from "./components/lib/Collapse";
+import TodoList from "./components/TodoList/TodoList";
+import { useState } from "react";
 
 function App() {
+  const [data, setData] = useState([
+    {
+      id: 1,
+      title: "todo 1",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "todo 2",
+      completed: false,
+    },
+  ]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -47,6 +63,8 @@ function App() {
           cellStyle={{ color: "green" }}
           CellComponent={<span>Test</span>}
         />
+        <Collapse />
+        <TodoList data={data} setData={setData} />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
