@@ -3,7 +3,6 @@ function Button({ variant = "squared", style = {}, title, onClick, img }) {
   // <=> props.style = props.style ? props.style : {}
   // <=> props.style = props.style ?? {}
   // <=> props.style ??= {};
-
   switch (variant) {
     case "rounded":
       style.borderRadius = 5;
@@ -18,7 +17,6 @@ function Button({ variant = "squared", style = {}, title, onClick, img }) {
       style.borderRadius = 0;
       break;
   }
-
   return (
     <button onClick={onClick} style={style}>
       {title}

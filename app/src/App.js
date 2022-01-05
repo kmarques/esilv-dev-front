@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Button from "./components/lib/Button";
+import Table from "./components/lib/Table";
 
 function App() {
   return (
@@ -38,6 +39,13 @@ function App() {
           onClick={function handleClick() {
             alert("8");
           }}
+        />
+        <Table nbLine={5} nbColumn={5} cellStyle={{ color: "red" }} />
+        <Table
+          nbLine={5}
+          nbColumn={5}
+          cellStyle={{ color: "green" }}
+          CellComponent={<span>Test</span>}
         />
         <p>
           Edit <code>src/App.js</code> and save to reload.
