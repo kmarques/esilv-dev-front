@@ -11,6 +11,7 @@ function MatchList() {
       .then((res) => res.json())
       .then((data) => setMatchs(data));
   }, []);
+  
   return (
     <ul>
       {matchs === undefined && <span>Loading...</span>}
