@@ -13,7 +13,7 @@
  * ]
  */
 
-function TodoList({ data, setData }) {
+function TodoList({ data, setData, disableAdd }) {
   function handleAddItem() {
     const id = Date.now();
     setData([
@@ -27,15 +27,35 @@ function TodoList({ data, setData }) {
   }
 
   function handleDeleteItem(item) {
-    setData(data.filter((value) => value.id != item.id));
+    setData(data.filter((value) => value.id !== item.id));
+  }
+
+  function handleToggleComplete(item) {
+    setData(
+      data.map((value) => {
+        if (value.id === item.id) {
+          return {
+            ...value,
+            completed: !value.completed,
+          };
+        } else {
+          return value;
+        }
+      })
+    );
   }
 
   return (
     <>
-      <button onClick={handleAddItem}>Add Item</button>
+      {!disableAdd && <button onClick={handleAddItem}>Add Item</button>}
       <ul>
         {data.map((item) => (
-          <li key={item.id}>
+          <li
+            key={item.id}
+            style={{ opacity: item.completed ? 0.5 : 1 }}
+            onClick={() => handleToggleComplete(item)}
+          >
+            <input name={item.id} type="checkbox" checked={item.completed} />
             {item.title}
             <button onClick={() => handleDeleteItem(item)}>X</button>
           </li>
