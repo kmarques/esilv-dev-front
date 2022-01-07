@@ -7,6 +7,8 @@ import TodoList from "./components/TodoList/TodoList";
 import { useState } from "react";
 import UserList from "./components/UserManager/UserList";
 import { Link, Route, Routes } from "react-router-dom";
+import Login from "./components/Security/Login";
+import MatchList from "./components/Matches/MatchList";
 
 function App() {
   return (
@@ -17,10 +19,14 @@ function App() {
         </Link>
         <nav>
           <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/matchs">Matchs</Link>
           <Link to="/collapse">Collpase</Link>
           <Link to="/user-management">User</Link>
         </nav>
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/matchs" element={<MatchList />} />
           <Route path="/collapse" element={<Collapse />} />
           <Route path="/user-management" element={<UserList />} />
           <Route path="/" element={<Home />} />
